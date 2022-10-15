@@ -1,0 +1,32 @@
+name: Run Gradle on PRs
+on: pull_request
+jobs:
+  gradle:
+    #strategy:
+    #  matrix:
+    #    os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        repository: "https://github.com/mcmodderz/KryptonReforged.git"
+    - uses: actions/setup-java@v3
+      with:
+        distribution: temurin
+        java-version: 17
+        
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
+    
+    - name: Execute Gradle build
+      run: ./gradlew build
+      
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        # Artifact name
+        name: krypton
+        # A file, directory or wildcard pattern that describes what to upload
+        path: build/libs
+      
+      
