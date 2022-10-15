@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        repository: "https://github.com/mcmodderz/KryptonReforged.git"
+        repository: mcmodderz/KryptonReforged
     - uses: actions/setup-java@v3
       with:
         distribution: temurin
